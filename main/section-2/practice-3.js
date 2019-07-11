@@ -1,5 +1,18 @@
 'use strict';
 
+
 module.exports = function countSameElements(collection) {
-  return '实现练习要求，并改写该行代码。';
+  let temp = collection.reduce((re, cur) => {
+    let letter = [...cur][0];
+    const reg = /[0-9]+/
+    let count = !cur.match(reg) ? 1 : parseInt(cur.match(reg)[0])
+    re[letter] ? re[letter] += parseInt(count) : re[letter] = parseInt(count);
+    return re;
+  },{})
+  let keys = Object.keys(temp);
+  let result = [];
+  keys.forEach(key => {
+    result.push({name: key, summary: temp[key]})
+  })
+  return result;
 }
